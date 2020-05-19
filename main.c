@@ -26,6 +26,8 @@ void delay(uint16_t iterations)
 
 void main(void)
 {
+	uint8_t i = 0;
+
 	LED_TRIS = 0; // Pin as output
 	LED_PORT = 0; // LED off
 	
@@ -36,5 +38,7 @@ void main(void)
 		delay(30000); // ~500ms @ 4MHz
 		LED_PORT = 0; // LED Off
 		delay(30000); // ~500ms @ 4MHz
+		PORTA = sine_wave_8[i];
+		i++;
 	}
 }
