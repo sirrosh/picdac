@@ -11,7 +11,11 @@ __code uint16_t __at (_CONFIG) __configword = _INTRC_OSC_NOCLKOUT & _WDTE_OFF & 
 
 void MCUInit(void)
 {
+	TRISB = 0;
 	
+//	LED_TRIS = 0; // Pin as output
+//	LED_PORT = 0; // LED off
+
 }
 
 // Uncalibrated delay, just waits a number of for-loop iterations
@@ -28,17 +32,17 @@ void main(void)
 {
 	uint8_t i = 0;
 
-	LED_TRIS = 0; // Pin as output
-	LED_PORT = 0; // LED off
-	
-	PORTA = sine_wave_8[0];
+MCUInit();
+
 	
 	while (1) {
+		/*
 		LED_PORT = 1; // LED On
 		delay(30000); // ~500ms @ 4MHz
 		LED_PORT = 0; // LED Off
 		delay(30000); // ~500ms @ 4MHz
-		PORTA = sine_wave_8[i];
+		*/
+		PORTB = sine_wave_8[i];
 		i++;
 	}
 }
