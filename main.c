@@ -9,12 +9,9 @@ __code uint16_t __at (_CONFIG) __configword = _INTRC_OSC_NOCLKOUT & _WDTE_OFF & 
 #define LED_PORT PORTAbits.RA0
 #define LED_TRIS TRISAbits.TRISA0
 
+/*
 void MCUInit(void)
 {
-	TRISB = 0;
-	
-//	LED_TRIS = 0; // Pin as output
-//	LED_PORT = 0; // LED off
 
 }
 
@@ -27,12 +24,15 @@ void delay(uint16_t iterations)
 		__asm nop __endasm;
 	}
 }
-
+*/
 void main(void)
 {
-	uint8_t i = 0;
+	TRISB = 0;
+	
+//	LED_TRIS = 0; // Pin as output
+//	LED_PORT = 0; // LED off
 
-MCUInit();
+	uint8_t i = 0;
 
 	
 	while (1) {
@@ -43,6 +43,7 @@ MCUInit();
 		delay(30000); // ~500ms @ 4MHz
 		*/
 		PORTB = sine_wave_8[i];
-		i++;
+		if (i == 0xFF) i = 0;
+		else i++;
 	}
 }
